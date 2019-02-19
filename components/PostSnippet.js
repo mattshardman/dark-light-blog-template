@@ -10,7 +10,7 @@ function PostSnippet({
 
   return (
     <article className="article">
-      <Link href={{ pathname: 'post', query: { id, dark } }}>
+      <Link prefetch href={{ pathname: 'post', query: { id, dark } }}>
         <h1>{title}</h1>
       </Link>
       <small>{moment(new Date(date)).startOf('day').fromNow()} - {timeToRead} minute read</small>

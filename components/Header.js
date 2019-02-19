@@ -21,7 +21,7 @@ function Header({ color, dark, setDark }) {
 
   return (
     <header className="wrapper header">
-      <Link href={{ pathname: '/', query: { dark } }}>
+      <Link prefetch href={{ pathname: '/', query: { dark } }}>
         <div className="logo-section">
           <img
             src={!dark ? 'https://image.flaticon.com/icons/svg/865/865779.svg'

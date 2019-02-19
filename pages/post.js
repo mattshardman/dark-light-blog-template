@@ -1,57 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PT from 'prop-types';
 import { withRouter } from 'next/router';
-import Home from '../components/Home';
+
+import Post from '../components/Post';
 import Header from '../components/Header';
 import withData from '../components/data/withData';
 
-const index = ({ router, postsData }) => {
-  const isDark = router.query.dark === 'true' || false; //eslint-disable-line
+const post = ({ router, postsData }) => {
+  const isDark = router.query.dark === 'true'; //eslint-disable-line
   const [dark, setDark] = useState(isDark || false);
 
   const mainColor = '#30353d';
   const lightColor = '#f9fbff';
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(() => {
-          console.log('Yes, it did.');
-        }).catch((err) => {
-          console.log("No it didn't. This happened: ", err);
-        });
+  const specificPost = postsData.filter((each) => {
+    if (each.id === router.query.id) {
+      return true;
     }
-  }, []);
+    return false;
+  });
 
   return (
-    <div className="home">
+    <div className="post">
       <Header
         color={dark ? lightColor : mainColor}
         dark={dark}
         setDark={setDark}
       />
-      <Home
-        color={dark ? lightColor : mainColor}
+      <Post
         dark={dark}
-        postsData={postsData}
+        specificPost={specificPost[0] || postsData[0]}
       />
       <style jsx>{`
-        .home {
+        .post {
           min-height: 100vh;
           box-sizing: border-box;
           width: 100%;
           background: ${dark ? mainColor : lightColor};
           transition: background 420ms;
         }
-        `}
+      `}
       </style>
     </div>
   );
 };
 
-index.propTypes = {
+post.propTypes = {
   router: PT.shape().isRequired,
   postsData: PT.arrayOf({}).isRequired,
 };
 
-export default withData(withRouter(index));
+export default withData(withRouter(post));

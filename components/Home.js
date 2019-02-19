@@ -1,18 +1,25 @@
 import React from 'react';
 import PT from 'prop-types';
-import Author from './Author';
+import Author from './author/Author';
 import { WrapperStyle } from './consistentStyles';
 import PostContainer from './PostContainer';
 
-function Home({ color, dark }) {
+const authorData = {
+  title: 'Nick Smith',
+  intro: "Hi I'm Nick and I write about businesses and what not. Here are some articles I went and wrote, oh boy I do hope you like them",
+  avatarImage: 'https://res.cloudinary.com/dgdniqfi9/image/upload/v1550600238/nick-blog/nick.png',
+};
+
+function Home(props) {
+  const { color } = props;
+
   return (
     <main className="wrapper home">
       <Author
-        dark={dark}
-        color={color}
-        avatarImage="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/14022253_10153912515647615_4741379893801994498_n.jpg?_nc_cat=111&_nc_ht=scontent-lht6-1.xx&oh=e7844e44401729fba1e812131e3b9069&oe=5CE0DFB2" //eslint-disable-line
+        {...props}
+        {...authorData}
       />
-      <PostContainer dark={dark} />
+      <PostContainer {...props} />
       <WrapperStyle />
       <style jsx>{`
           .home {
@@ -31,5 +38,6 @@ function Home({ color, dark }) {
 Home.propTypes = {
   color: PT.string.isRequired,
   dark: PT.bool.isRequired,
+  postsData: PT.arrayOf({}).isRequired,
 };
 export default Home;

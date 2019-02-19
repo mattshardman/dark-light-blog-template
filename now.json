@@ -1,0 +1,14 @@
+{
+    "version": 2,
+    "alias": ["boring-business", "www.boring.business", "boring.business"],
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@now/static-build",
+        "config": { "distDir": "out" }
+      },
+      { "src": "/static/manifest.json", "use": "@now/static" },
+      { "src": "service-worker.js", "use": "@now/static" }
+    ]
+  }
+  

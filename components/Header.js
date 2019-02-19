@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import PT from 'prop-types';
 import { WrapperStyle } from './consistentStyles';
 
@@ -20,10 +21,17 @@ function Header({ color, dark, setDark }) {
 
   return (
     <header className="wrapper header">
-      <div className="logo-section">
-        <img src="https://image.flaticon.com/icons/svg/865/865779.svg" alt="" height={40} />
-        <h1>Boring Business</h1>
-      </div>
+      <Link href={{ pathname: '/', query: { dark } }}>
+        <div className="logo-section">
+          <img
+            src={!dark ? 'https://image.flaticon.com/icons/svg/865/865779.svg'
+          : 'https://res.cloudinary.com/dgdniqfi9/image/upload/v1550592004/nick-blog/moon-white.png'} //eslint-disable-line
+            alt=""
+            height={40}
+          />
+          <h1>Boring Business</h1>
+        </div>
+      </Link>
       <div className="switch">
         <div className="dark">
           <i
@@ -55,7 +63,8 @@ function Header({ color, dark, setDark }) {
                 color: ${color};
                 background: ${dark ? '#30353d' : '#f9fbff'};
                 height: ${isScrolled ? '60px' : '100px'};
-                transition: height 420ms, background 420ms;
+                border-bottom:  ${isScrolled ? '1px #ddd solid' : 'none'};
+                transition: height 420ms, background 420ms, border-bottom 420ms;
             }
 
             .logo-section {
@@ -63,6 +72,7 @@ function Header({ color, dark, setDark }) {
                 align-items: center;
                 justify-content: space-between;
                 width: 350px;
+                cursor: pointer;
             }
 
             .switch {
@@ -127,7 +137,7 @@ function Header({ color, dark, setDark }) {
 
 Header.propTypes = {
   color: PT.string.isRequired,
-  dark: PT.string.isRequired,
+  dark: PT.bool.isRequired,
   setDark: PT.func.isRequired,
 };
 

@@ -2,22 +2,20 @@ import React from 'react';
 import PT from 'prop-types';
 import PostSnippet from './PostSnippet';
 
-function PostContainer({ dark }) {
+function PostContainer({ dark, postsData }) {
   return (
     <main className="post-container">
       <h3>Posts</h3>
-      <PostSnippet
-        dark={dark}
-        title="Why stuff happens"
-        date="18 Feb 2019"
-        body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore repellat obcaecati laudantium, quam omnis mollitia repudiandae porro ipsa, veniam reiciendis magnam veritatis tempora eos animi odio labore eius quo quaerat."
-      />
-      <PostSnippet
-        dark={dark}
-        title="Why stuff happens"
-        date="16 Feb 2019"
-        body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore repellat obcaecati laudantium, quam omnis mollitia repudiandae porro ipsa, veniam reiciendis magnam veritatis tempora eos animi odio labore eius quo quaerat."
-      />
+      {
+        postsData.map(post => (
+          <PostSnippet
+            key={post.id}
+            dark={dark}
+            {...post}
+          />
+        ))
+      }
+
       <style jsx>{`
         .post-container {
           padding-top: 30px;
@@ -37,6 +35,7 @@ function PostContainer({ dark }) {
 
 PostContainer.propTypes = {
   dark: PT.string.isRequired,
+  postsData: PT.arrayOf({}).isRequired,
 };
 
 export default PostContainer;

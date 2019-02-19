@@ -1,0 +1,21 @@
+{
+    "short_name": "Boring.business",
+    "name": "Boring.business",
+    "icons": [
+      {
+        "src": "https://res.cloudinary.com/dgdniqfi9/image/upload/v1550594730/nick-blog/moon-black.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "https://res.cloudinary.com/dgdniqfi9/image/upload/v1550594730/nick-blog/moon-black.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#fff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#fff"
+  }

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
+    "now-build": "next build && next export",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,9 +14,11 @@
   "dependencies": {
     "moment": "^2.24.0",
     "next": "^8.0.1",
+    "prismic-javascript": "^2.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-dom": "^16.8.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.5",

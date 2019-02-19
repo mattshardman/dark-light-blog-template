@@ -20,9 +20,11 @@ export default () => {
       />
       <style jsx>{`
       .home {
+        min-height: 100vh;
         box-sizing: border-box;
         width: 100%;
         background: ${dark ? mainColor : lightColor};
+        transition: background 420ms;
       }
         `}
       </style>

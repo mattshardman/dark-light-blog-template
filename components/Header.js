@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PT from 'prop-types';
+import { WrapperStyle } from './consistentStyles';
 
 function Header({ color, dark, setDark }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,7 +19,7 @@ function Header({ color, dark, setDark }) {
   });
 
   return (
-    <header className="header">
+    <header className="wrapper header">
       <div className="logo-section">
         <img src="https://image.flaticon.com/icons/svg/865/865779.svg" alt="" height={40} />
         <h1>Boring Business</h1>
@@ -42,20 +43,19 @@ function Header({ color, dark, setDark }) {
           onClick={() => setDark(!dark)}
         />
       </div>
+      <WrapperStyle />
       <style jsx>{`
             .header {
                 position: fixed;
-                background: ${dark ? '#30353d' : '#f9fbff'};
-                font-family: Roboto;
                 box-sizing: border-box;
                 width: 100%;
-                padding: 0 25%;
-                height: ${isScrolled ? '60px' : '100px'};
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 color: ${color};
-                transition: height 420ms;
+                background: ${dark ? '#30353d' : '#f9fbff'};
+                height: ${isScrolled ? '60px' : '100px'};
+                transition: height 420ms, background 420ms;
             }
 
             .logo-section {
@@ -108,7 +108,16 @@ function Header({ color, dark, setDark }) {
             h1 {
                 font-size: 40px;
                 opacity: ${isScrolled ? 0 : 1};
-                transition: opacity 420ms;
+                transition: font-size 420ms, opacity 420ms;
+            }
+
+            @media (max-width: 900px) {
+              .logo-section {
+                width: 220px;
+              }
+              h1 {
+                font-size: 22px;
+              }
             }
         `}
       </style>

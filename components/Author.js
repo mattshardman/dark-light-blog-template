@@ -46,6 +46,27 @@ function Author({ avatarImage, dark, color }) {
                 margin: 0px;
                 margin-bottom: 10px;
             }
+
+            @media (max-width: 900px) {
+              .author {
+                padding: 0 10px;
+                height: 100px;
+              }
+
+              .avatar {
+                height: 60px;
+                width: 60px;
+              }  
+
+              .text {
+                height: 60px;
+                margin-left: 20px;
+              }
+
+              h3 {
+                font-size: 16px;
+              }
+            }
         `}
       </style>
     </section>

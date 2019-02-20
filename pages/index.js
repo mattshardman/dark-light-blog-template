@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PT from 'prop-types';
 import { withRouter } from 'next/router';
+
 import Home from '../components/Home';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import withData from '../components/data/withData';
+
+import { colorScheme } from '../components/colorScheme';
 
 const index = ({ router, postsData }) => {
   const isDark = router.query.dark === 'true' || false; //eslint-disable-line
   const [dark, setDark] = useState(isDark || false);
 
-  const mainColor = '#30353d';
-  const lightColor = '#f9fbff';
+  const { mainColor, lightColor } = colorScheme;
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
@@ -30,19 +32,21 @@ const index = ({ router, postsData }) => {
         dark={dark}
         setDark={setDark}
       />
+
       <Home
         color={dark ? lightColor : mainColor}
         dark={dark}
         postsData={postsData}
       />
+
       <style jsx>{`
-        .home {
-          min-height: 100vh;
-          box-sizing: border-box;
-          width: 100%;
-          background: ${dark ? mainColor : lightColor};
-          transition: background 420ms;
-        }
+          .home {
+            min-height: 100vh;
+            box-sizing: border-box;
+            width: 100%;
+            background: ${dark ? mainColor : lightColor};
+            transition: background 420ms;
+          }
         `}
       </style>
     </div>
@@ -51,7 +55,7 @@ const index = ({ router, postsData }) => {
 
 index.propTypes = {
   router: PT.shape().isRequired,
-  postsData: PT.arrayOf({}).isRequired,
+  postsData: PT.arrayOf(PT.shape().isRequired).isRequired,
 };
 
 export default withData(withRouter(index));

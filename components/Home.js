@@ -6,8 +6,8 @@ import PostContainer from './PostContainer';
 
 const authorData = {
   title: 'Nick Smith',
-  intro: "Hi I'm Nick and I write about businesses and what not. Here are some articles I went and wrote, oh boy I do hope you like them",
-  avatarImage: 'https://res.cloudinary.com/dgdniqfi9/image/upload/v1550600238/nick-blog/nick.png',
+  intro: "Hi I'm Nick and I write about businesses and what not. Here are some articles I went and wrote, oh boy I do hope you like them", //eslint-disable-line
+  avatarImage: 'https://res.cloudinary.com/dgdniqfi9/image/upload/v1550655836/nick-blog/nick-smith.png',
 };
 
 function Home(props) {
@@ -19,8 +19,11 @@ function Home(props) {
         {...props}
         {...authorData}
       />
+
       <PostContainer {...props} />
+
       <WrapperStyle />
+
       <style jsx>{`
           .home {
             box-sizing: border-box;
@@ -38,6 +41,6 @@ function Home(props) {
 Home.propTypes = {
   color: PT.string.isRequired,
   dark: PT.bool.isRequired,
-  postsData: PT.arrayOf({}).isRequired,
+  postsData: PT.arrayOf(PT.object).isRequired,
 };
 export default Home;

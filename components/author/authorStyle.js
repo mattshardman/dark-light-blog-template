@@ -1,63 +1,94 @@
 import PT from 'prop-types';
 
-const AuthorStyle = ({ dark, avatarImage, color }) => (
+const AuthorStyle = ({ dark, color }) => (
   <style jsx>{`
   .author {
       box-sizing: border-box;
       min-height: 150px;
       width: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       border-radius: 10px;
       border: 1px solid #fff;
-      padding: 0 50px;
+      padding: 30px 50px;
       background: ${dark ? '#30353d' : '#fff'};
       box-shadow: ${dark ? 'none' : '0 3px 35px rgba(0,0,0,0.1)'};
   }
+
+  .main-section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
   
   .avatar {
-      background-image: url("${avatarImage}");
-      background-size: cover;
-      background-position: center;
-      height: 90px;
-      width: 90px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 110px;
+      width: 110px;
       border-radius: 50%;
   }
   
   .text {
-      min-height: 90px;
       display: flex;
-      width: 70%;
+      width: 75%;
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-      margin-left: 30px;
+  }
+
+  .social-media {
+    height: 25px;
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   h3, p {
       color: ${color};
       margin: 0px;
-      margin-bottom: 10px;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${color};
   }
   
   @media (max-width: 900px) {
     .author {
-      padding: 30px 10px;
+      padding: 30px;
       min-height: 100px;
+    }
+
+    .main-section {
+      flex-direction: column;
     }
   
     .avatar {
-      height: 60px;
-      width: 60px;
+      height: 125px;
+      width: 125px;
+      margin-bottom: 20px;
     }  
   
     .text {
-      min-height: 60px;
-      margin-left: 20px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      text-align: center;
     }
   
     h3 {
-      font-size: 16px;
+      font-size: 18px;
     }
   }
   `}
@@ -65,7 +96,6 @@ const AuthorStyle = ({ dark, avatarImage, color }) => (
 );
 
 AuthorStyle.propTypes = {
-  avatarImage: PT.string.isRequired,
   dark: PT.bool.isRequired,
   color: PT.string.isRequired,
 };

@@ -34,8 +34,8 @@ function PostContainer({ dark, postsData }) {
 }
 
 PostContainer.propTypes = {
-  dark: PT.string.isRequired,
-  postsData: PT.arrayOf({}).isRequired,
+  dark: PT.bool.isRequired,
+  postsData: PT.arrayOf(PT.object).isRequired,
 };
 
 export default PostContainer;

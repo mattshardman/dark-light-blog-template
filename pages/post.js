@@ -3,7 +3,7 @@ import PT from 'prop-types';
 import { withRouter } from 'next/router';
 
 import Post from '../components/Post';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import withData from '../components/data/withData';
 
 const post = ({ router, postsData }) => {

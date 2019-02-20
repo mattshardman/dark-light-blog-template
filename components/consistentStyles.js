@@ -1,5 +1,5 @@
 export const WrapperStyle = () => (
-  <style jsx>{`
+  <style jsx="true">{`
     .wrapper {
         box-sizing: border-box;
         padding: 0 25%;

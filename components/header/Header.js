@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PT from 'prop-types';
-import { WrapperStyle } from './consistentStyles';
+import { WrapperStyle } from '../consistentStyles';
 
 function Header({ color, dark, setDark }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,6 +32,7 @@ function Header({ color, dark, setDark }) {
           <h1>Boring Business</h1>
         </div>
       </Link>
+
       <div className="switch">
         <div className="dark">
           <i
@@ -51,7 +52,9 @@ function Header({ color, dark, setDark }) {
           onClick={() => setDark(!dark)}
         />
       </div>
+
       <WrapperStyle />
+
       <style jsx>{`
             .header {
                 position: fixed;

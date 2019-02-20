@@ -39,7 +39,7 @@ function withData(Component) {
   }
 
   App.propTypes = {
-    reformattedPosts: PT.arrayOf({}).isRequired,
+    reformattedPosts: PT.arrayOf(PT.object).isRequired,
   };
 
   return App;

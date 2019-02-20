@@ -1,14 +1,12 @@
 {
-    "version": 2,
-    "alias": ["boring-business", "www.boring.business", "boring.business"],
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@now/next",
-        "config": { "distDir": "out" }
-      },
-      { "src": "/static/manifest.json", "use": "@now/static" },
-      { "src": "service-worker.js", "use": "@now/static" }
-    ]
-  }
-  
+  "version": 2,
+  "alias": ["boringbusiness", "www.boring.business", "https://boring.business"],
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@now/next"
+    },
+    { "src": "/static/manifest.json", "use": "@now/static" },
+    { "src": "service-worker.js", "use": "@now/static" }
+  ]
+}

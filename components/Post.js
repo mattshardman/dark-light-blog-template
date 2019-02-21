@@ -41,6 +41,7 @@ function Post(props) {
         }
 
         .body {
+          box-sizing: border-box;
           width: 100%;
           padding: 40px 0;
         }

@@ -27,9 +27,9 @@ const socialIcons = [{
 
 function Author(props) {
   const {
-    title, subTitle, intro, avatarImage,
+    title, subTitle, intro, avatarImage, minimize,
   } = props;
-  console.log(intro);
+
   return (
     <section className="author-card">
       <div className="title-section">
@@ -45,7 +45,7 @@ function Author(props) {
         </div>
       </div>
 
-      { !!intro
+      { !minimize
       && (
       <div className="intro-section">
         <p>{intro}</p>
@@ -80,6 +80,11 @@ Author.propTypes = {
   intro: PT.string.isRequired,
   avatarImage: PT.string.isRequired,
   dark: PT.bool.isRequired,
+  minimize: PT.bool,
+};
+
+Author.defaultProps = {
+  minimize: false,
 };
 
 export default Author;

@@ -33,8 +33,6 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
           />
 
-          <link rel="manifest" href="/static/manifest.json" />
-
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
         </Head>

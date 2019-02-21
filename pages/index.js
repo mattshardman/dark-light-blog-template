@@ -15,7 +15,7 @@ const index = ({ postsData, dark }) => {
     <div className="home">
       <Head>
         <title key="title">Boring.business - blog about businesses</title>
-        <meta key="description" name="description" content={authorData.home.intro} />
+        <meta key="description" name="description" content={authorData.intro} />
       </Head>
       <Home
         color={dark ? lightColor : mainColor}

@@ -26,8 +26,9 @@ function Post(props) {
       </div>
 
       <Author
+        minimize
         {...props}
-        {...authorData.post}
+        {...authorData}
       />
 
       <WrapperStyle />

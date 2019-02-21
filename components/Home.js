@@ -13,7 +13,7 @@ function Home(props) {
     <main className="wrapper home">
       <Author
         {...props}
-        {...authorData.home}
+        {...authorData}
       />
 
       <PostContainer {...props} />

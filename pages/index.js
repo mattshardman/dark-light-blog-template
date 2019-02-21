@@ -1,27 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import Head from 'next/head';
 import PT from 'prop-types';
 
 import Home from '../components/Home';
 import withData from '../lib/withData';
 
+import { authorData } from '../components/authorData';
 import { colorScheme } from '../components/styles/colorScheme';
 
 const index = ({ postsData, dark }) => {
   const { mainColor, lightColor } = colorScheme;
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(() => {
-          console.log('Yes, it did.');
-        }).catch((err) => {
-          console.log("No it didn't. This happened: ", err);
-        });
-    }
-  }, []);
-
   return (
     <div className="home">
+      <Head>
+        <title key="title">Boring.business - blog about businesses</title>
+        <meta key="description" name="description" content={authorData.home.intro} />
+      </Head>
       <Home
         color={dark ? lightColor : mainColor}
         dark={dark}

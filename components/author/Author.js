@@ -8,8 +8,8 @@ const placeholder = (
   <div
     style={{
       backgroundColor: '#484848',
-      height: 120,
-      width: 120,
+      height: '100%',
+      width: '100%',
     }}
   />
 );
@@ -27,35 +27,43 @@ const socialIcons = [{
 
 function Author(props) {
   const {
-    title, intro, avatarImage,
+    title, subTitle, intro, avatarImage,
   } = props;
-
+  console.log(intro);
   return (
-    <section className="author">
-      <div className="main-section">
+    <section className="author-card">
+      <div className="title-section">
         <div className="avatar">
           <ProgressiveImage src={avatarImage} placeholder="">
             {(src, loading) => (loading ? placeholder : <img src={src} alt="me" height="100%" />)}
           </ProgressiveImage>
         </div>
 
-        <div className="text">
-          <h3>{title}</h3>
-          <p>{intro}</p>
+        <div className="title">
+          <h1>{title}</h1>
+          <p>{subTitle}</p>
         </div>
       </div>
+
+      { !!intro
+      && (
+      <div className="intro-section">
+        <p>{intro}</p>
+      </div>
+      )
+      }
 
       <div className="social-media">
         { socialIcons.map(each => (
           <a
+            key={each.name}
             href={each.link}
             target="_blank"
             rel="noopener noreferrer"
           >
             <i
-              key={each.name}
               className={`fab fa-${each.class}`}
-              style={{ fontSize: 25, margin: '0 25px' }}
+              style={{ fontSize: 25, marginLeft: 50 }}
             />
           </a>
         )) }
@@ -68,10 +76,10 @@ function Author(props) {
 
 Author.propTypes = {
   title: PT.string.isRequired,
+  subTitle: PT.string.isRequired,
   intro: PT.string.isRequired,
   avatarImage: PT.string.isRequired,
   dark: PT.bool.isRequired,
-  color: PT.string.isRequired,
 };
 
 export default Author;

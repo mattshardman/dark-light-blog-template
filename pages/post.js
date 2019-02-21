@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import PT from 'prop-types';
 
 import Post from '../components/Post';
@@ -14,13 +15,17 @@ const post = ({ dark, postsData, router }) => {
       return true;
     }
     return false;
-  });
+  })[0];
 
   return (
     <div className="post">
+      <Head>
+        <title key="title">{specificPost.title}</title>
+        <meta key="description" name="description" content={specificPost.snippet} />
+      </Head>
       <Post
         dark={dark}
-        specificPost={specificPost[0] || postsData[0]}
+        specificPost={specificPost || postsData[0]}
       />
       <style jsx>{`
         .post {
@@ -39,7 +44,7 @@ const post = ({ dark, postsData, router }) => {
 post.propTypes = {
   router: PT.shape().isRequired,
   dark: PT.bool.isRequired,
-  postsData: PT.arrayOf({}).isRequired,
+  postsData: PT.arrayOf(PT.object.isRequired).isRequired,
 };
 
 export default withData(post);

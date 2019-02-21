@@ -55,7 +55,7 @@ PostSnippet.propTypes = {
   title: PT.string.isRequired,
   date: PT.string.isRequired,
   snippet: PT.string.isRequired,
-  body: PT.arrayOf(PT.string.isRequired).isRequired,
+  body: PT.arrayOf(PT.string).isRequired,
 };
 
 export default PostSnippet;

@@ -1,12 +1,10 @@
 {
   "version": 2,
-  "alias": ["boringbusiness", "www.boring.business", "https://boring.business"],
+  "alias": ["boringbusiness", "www.boring.business", "boring.business"],
   "builds": [
     {
       "src": "next.config.js",
       "use": "@now/next"
-    },
-    { "src": "/static/manifest.json", "use": "@now/static" },
-    { "src": "service-worker.js", "use": "@now/static" }
+    }
   ]
 }

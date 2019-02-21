@@ -1,10 +1,14 @@
 import React from 'react';
 import PT from 'prop-types';
 import { WrapperStyle } from './styles/consistentStyles';
+import Author from './author/Author';
 
+import { authorData } from './authorData';
 import { bodyParser, getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
 
-function Post({ dark, specificPost }) {
+
+function Post(props) {
+  const { dark, specificPost } = props;
   const {
     title, date, body, jsxBody,
   } = specificPost;
@@ -13,11 +17,18 @@ function Post({ dark, specificPost }) {
 
   return (
     <article className="wrapper article">
-      <h1>{title}</h1>
+      <h1 headline={title}>{title}</h1>
 
       <small>{getTimeSincePost(date)} - {timeToRead} minute read</small>
 
-      {jsxBody.map(each => bodyParser(each))}
+      <div className="body">
+        {jsxBody.map(each => bodyParser(each))}
+      </div>
+
+      <Author
+        {...props}
+        {...authorData.post}
+      />
 
       <WrapperStyle />
       <style jsx>{`
@@ -26,6 +37,11 @@ function Post({ dark, specificPost }) {
           padding-top: 120px;
           padding-bottom: 60px;
           color: ${dark ? '#fff' : '#484848'};
+        }
+
+        .body {
+          width: 100%;
+          padding: 40px 0;
         }
 
         a {
@@ -57,7 +73,7 @@ Post.propTypes = {
   specificPost: PT.shape({
     title: PT.string.isRequired,
     date: PT.string.isRequired,
-    body: PT.arrayOf(PT.string.isRequired).isRequired,
+    body: PT.arrayOf(PT.string).isRequired,
   }).isRequired,
 };
 

@@ -24,6 +24,7 @@ function PostContainer({ dark, postsData }) {
         }
 
         h3 {
+          color: #ff0078;
           padding: 0;
           margin: 0;
         }

@@ -14,6 +14,7 @@ function PostSnippet({
       <Link
         prefetch
         href={{ pathname: 'post', query: { id, dark } }}
+        as={title.split(' ').join('-')}
       >
         <h1>{title}</h1>
       </Link>

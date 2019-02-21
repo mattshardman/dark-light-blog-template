@@ -1,20 +1,27 @@
 import React from 'react';
 import Link from 'next/link';
-import moment from 'moment';
 import PT from 'prop-types';
+
+import { getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
 
 function PostSnippet({
   dark, id, title, date, snippet, body,
 }) {
-  const timeToRead = Math.round(body.toString().split(' ').length / 200);
+  const timeToRead = getTimeToRead(body);
 
   return (
     <article className="article">
-      <Link prefetch href={{ pathname: 'post', query: { id, dark } }}>
+      <Link
+        prefetch
+        href={{ pathname: 'post', query: { id, dark } }}
+      >
         <h1>{title}</h1>
       </Link>
-      <small>{moment(new Date(date)).startOf('day').fromNow()} - {timeToRead} minute read</small>
+
+      <small>{getTimeSincePost(date)} - {timeToRead} minute read</small>
+
       <p>{snippet}</p>
+
       <style jsx>{`
         .article {
           padding: 10px 0;

@@ -1,26 +1,31 @@
 import React from 'react';
-import moment from 'moment';
 import PT from 'prop-types';
-import uuid from 'uuid';
-import { WrapperStyle } from './consistentStyles';
+import { WrapperStyle } from './styles/consistentStyles';
 
-const dateFunction = date => moment(new Date(date)).startOf('day').fromNow();
+import { bodyParser, getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
 
 function Post({ dark, specificPost }) {
-  const { title, date, body } = specificPost;
-  const timeToRead = Math.round(body.toString().split(' ').length / 200);
+  const {
+    title, date, body, jsxBody,
+  } = specificPost;
+
+  const timeToRead = getTimeToRead(body);
+
   return (
     <article className="wrapper article">
       <h1>{title}</h1>
-      <small>{dateFunction(date)} - {timeToRead} minute read</small>
 
-      {body.map(each => <p key={uuid()}>{each}</p>)}
+      <small>{getTimeSincePost(date)} - {timeToRead} minute read</small>
+
+      {jsxBody.map(each => bodyParser(each))}
 
       <WrapperStyle />
       <style jsx>{`
         .article {
           box-sizing: border-box;
           padding-top: 120px;
+          padding-bottom: 60px;
+          color: ${dark ? '#fff' : '#484848'};
         }
 
         a {
@@ -29,7 +34,6 @@ function Post({ dark, specificPost }) {
         }
 
         h1 {
-          color: ${dark ? '#fff' : '#484848'};
           font-weight: 700;
           font-size: 35px;
           margin: 10px 0;
@@ -39,8 +43,7 @@ function Post({ dark, specificPost }) {
           color: #1ca8ff;
         }
 
-        p {
-          color: ${dark ? '#fff' : '#484848'};
+        div, p {
           text-align: justify;
         }
       `}

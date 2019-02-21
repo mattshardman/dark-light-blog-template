@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PT from 'prop-types';
-import { withRouter } from 'next/router';
 
 import Home from '../components/Home';
-import Header from '../components/header/Header';
-import withData from '../components/data/withData';
+import withData from '../lib/withData';
 
-import { colorScheme } from '../components/colorScheme';
+import { colorScheme } from '../components/styles/colorScheme';
 
-const index = ({ router, postsData }) => {
-  const isDark = router.query.dark === 'true' || false; //eslint-disable-line
-  const [dark, setDark] = useState(isDark || false);
-
+const index = ({ postsData, dark }) => {
   const { mainColor, lightColor } = colorScheme;
 
   useEffect(() => {
@@ -27,12 +22,6 @@ const index = ({ router, postsData }) => {
 
   return (
     <div className="home">
-      <Header
-        color={dark ? lightColor : mainColor}
-        dark={dark}
-        setDark={setDark}
-      />
-
       <Home
         color={dark ? lightColor : mainColor}
         dark={dark}
@@ -54,8 +43,8 @@ const index = ({ router, postsData }) => {
 };
 
 index.propTypes = {
-  router: PT.shape().isRequired,
+  dark: PT.bool.isRequired,
   postsData: PT.arrayOf(PT.shape().isRequired).isRequired,
 };
 
-export default withData(withRouter(index));
+export default withData(index);

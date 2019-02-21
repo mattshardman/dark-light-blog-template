@@ -16,7 +16,7 @@ const placeholder = (
 
 const socialIcons = [{
   name: 'twitter',
-  link: '',
+  link: 'https://twitter.com/nrhsmith',
   class: 'twitter',
 },
 {

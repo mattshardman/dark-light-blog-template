@@ -62,6 +62,11 @@ const AuthorStyle = ({ dark, color }) => (
   a {
     text-decoration: none;
     color: ${color};
+    transition: color 1s;
+  }
+
+  a:hover {
+    color: #1ca8ff;
   }
   
   @media (max-width: 900px) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import Author from './author/Author';
-import { WrapperStyle } from './consistentStyles';
+import { WrapperStyle } from './styles/consistentStyles';
 import PostContainer from './PostContainer';
 
 const authorData = {

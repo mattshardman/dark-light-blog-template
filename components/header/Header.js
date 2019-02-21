@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PT from 'prop-types';
-import { WrapperStyle } from '../consistentStyles';
+import { WrapperStyle } from '../styles/consistentStyles';
 
 function Header({ color, dark, setDark }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,6 +58,7 @@ function Header({ color, dark, setDark }) {
       <style jsx>{`
             .header {
                 position: fixed;
+                z-index: 1000;
                 box-sizing: border-box;
                 width: 100%;
                 display: flex;

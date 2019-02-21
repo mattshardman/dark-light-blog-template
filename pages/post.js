@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PT from 'prop-types';
-import { withRouter } from 'next/router';
 
 import Post from '../components/Post';
-import Header from '../components/header/Header';
-import withData from '../components/data/withData';
+import withData from '../lib/withData';
 
-const post = ({ router, postsData }) => {
-  const isDark = router.query.dark === 'true'; //eslint-disable-line
-  const [dark, setDark] = useState(isDark || false);
+import { colorScheme } from '../components/styles/colorScheme';
 
-  const mainColor = '#30353d';
-  const lightColor = '#f9fbff';
+const post = ({ dark, postsData, router }) => {
+  const { mainColor, lightColor } = colorScheme;
 
   const specificPost = postsData.filter((each) => {
     if (each.id === router.query.id) {
@@ -22,11 +18,6 @@ const post = ({ router, postsData }) => {
 
   return (
     <div className="post">
-      <Header
-        color={dark ? lightColor : mainColor}
-        dark={dark}
-        setDark={setDark}
-      />
       <Post
         dark={dark}
         specificPost={specificPost[0] || postsData[0]}
@@ -47,7 +38,8 @@ const post = ({ router, postsData }) => {
 
 post.propTypes = {
   router: PT.shape().isRequired,
+  dark: PT.bool.isRequired,
   postsData: PT.arrayOf({}).isRequired,
 };
 
-export default withData(withRouter(post));
+export default withData(post);

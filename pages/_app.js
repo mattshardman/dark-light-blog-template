@@ -4,8 +4,13 @@ import { withRouter } from 'next/router';
 import Prismic from 'prismic-javascript';
 
 import { reformatIncomingPostData } from '../lib/utils/utilFunctions';
+import Header from '../components/header/Header';
 
 class MyApp extends App {
+  state = {
+    dark: this.props.router.query === 'dark' || true,
+  }
+
   static async getInitialProps() {
     const apiEndpoint = 'https://boring-business.cdn.prismic.io/api/v2';
 
@@ -21,11 +26,20 @@ class MyApp extends App {
   }
 
   render() {
+    const { dark } = this.state;
     const { Component, reformattedPosts } = this.props;
-    console.log(reformattedPosts);
+
     return (
       <Container>
-        <Component postsData={reformattedPosts} {...this.props} />
+        <Header
+          dark={dark}
+          setDark={() => this.setState({ dark: !dark })}
+        />
+        <Component
+          postsData={reformattedPosts}
+          {...this.props}
+          {...this.state}
+        />
       </Container>
     );
   }

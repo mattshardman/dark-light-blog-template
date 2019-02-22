@@ -3,8 +3,10 @@ import Link from 'next/link';
 import PT from 'prop-types';
 import { WrapperStyle } from '../styles/consistentStyles';
 import Switch from './Switch';
+import withConfig from '../../lib/withConfig';
 
-function Header({ dark, setDark }) {
+function Header({ header, dark, setDark }) {
+  const { title, titleImgForDark, titleImgForLight } = header;
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleScroll = () => {
@@ -30,14 +32,14 @@ function Header({ dark, setDark }) {
       >
         <div className="logo-section">
           <img
-            src={!dark
-              ? 'https://res.cloudinary.com/dgdniqfi9/image/upload/v1550594730/nick-blog/moon-black.png'
-              : 'https://res.cloudinary.com/dgdniqfi9/image/upload/v1550592004/nick-blog/moon-white.png'
-            } //eslint-disable-line
+            src={dark
+              ? titleImgForDark
+              : titleImgForLight
+            }
             alt=""
             height={40}
           />
-          <h1>Boring Business</h1>
+          <h1>{title}</h1>
         </div>
       </Link>
 
@@ -92,8 +94,9 @@ function Header({ dark, setDark }) {
 }
 
 Header.propTypes = {
+  header: PT.shape(PT.object).isRequired,
   dark: PT.bool.isRequired,
   setDark: PT.func.isRequired,
 };
 
-export default Header;
+export default withConfig(Header);

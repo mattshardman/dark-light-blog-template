@@ -1,6 +1,8 @@
 import PT from 'prop-types';
+import * as polished from 'polished';
+import withTheme from '../../lib/withTheme';
 
-const AuthorStyle = ({ dark }) => (
+const AuthorStyle = ({ dark, theme }) => (
   <style jsx>{`
   .author-card {
       box-sizing: border-box;
@@ -9,10 +11,10 @@ const AuthorStyle = ({ dark }) => (
       flex-direction: column;
       align-items: center;
       border-radius: 10px;
-      border: 1px solid #fff;
+      border: ${dark ? 'none' : '1px solid #fff'};
       padding: 30px;
-      background: ${dark ? '#30353d' : '#fff'};
-      box-shadow: ${dark ? 'none' : '0 3px 35px rgba(0,0,0,0.1)'};
+      background: ${dark ? polished.darken(0.02, theme.darkColor) : polished.lighten(0.5, theme.lightColor)};
+      box-shadow: ${dark ? '0 3px 35px rgba(0,0,0,0.25)' : '0 3px 35px rgba(0,0,0,0.1)'};
   }
 
   .title-section {
@@ -85,7 +87,7 @@ const AuthorStyle = ({ dark }) => (
   }
 
   .intro-section p {
-    color: ${dark ? '#fff' : '#5b5b5b'};
+    color: ${dark ? theme.textColorForDark : theme.textColorForLight};
     margin: 0;
     padding: 0;
   }
@@ -100,7 +102,7 @@ const AuthorStyle = ({ dark }) => (
 
   a {
     text-decoration: none;
-    color: ${dark ? '#fff' : '#484848'};
+    color: ${dark ? theme.textColorForDark : theme.textColorForLight};
     transition: color 1s;
   }
 
@@ -112,7 +114,8 @@ const AuthorStyle = ({ dark }) => (
 );
 
 AuthorStyle.propTypes = {
+  theme: PT.shape(PT.string.isRequired).isRequired,
   dark: PT.bool.isRequired,
 };
 
-export default AuthorStyle;
+export default withTheme(AuthorStyle);

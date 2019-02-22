@@ -1,8 +1,10 @@
 import React from 'react';
 import PT from 'prop-types';
 import PostSnippet from './PostSnippet';
+import withTheme from '../lib/withTheme';
 
-function PostContainer({ dark, postsData }) {
+function PostContainer({ dark, postsData, theme }) {
+  const { textColorForDark, textColorForLight, altColors } = theme;
   return (
     <main className="post-container">
       <h3>Posts</h3>
@@ -19,12 +21,12 @@ function PostContainer({ dark, postsData }) {
       <style jsx>{`
         .post-container {
           padding-top: 30px;
-          color: ${dark ? '#fff' : '#30353d'};
+          color: ${dark ? textColorForDark : textColorForLight};
           width: 100%;
         }
 
         h3 {
-          color: #ff0078;
+          color: ${altColors[1]};
           padding: 0;
           margin: 0;
         }
@@ -35,8 +37,9 @@ function PostContainer({ dark, postsData }) {
 }
 
 PostContainer.propTypes = {
+  theme: PT.shape(PT.string.isRequired).isRequired,
   dark: PT.bool.isRequired,
   postsData: PT.arrayOf(PT.object).isRequired,
 };
 
-export default PostContainer;
+export default withTheme(PostContainer);

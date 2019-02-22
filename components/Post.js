@@ -5,6 +5,7 @@ import Author from './author/Author';
 
 import { authorData } from './authorData';
 import { bodyParser, getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
+import withTheme from '../lib/withTheme';
 
 
 function Post(props) {
@@ -17,7 +18,7 @@ function Post(props) {
 
   return (
     <article className="wrapper article">
-      <h1 headline={title}>{title}</h1>
+      <h1>{title}</h1>
 
       <small>{getTimeSincePost(date)} - {timeToRead} minute read</small>
 
@@ -79,4 +80,4 @@ Post.propTypes = {
   }).isRequired,
 };
 
-export default Post;
+export default withTheme(Post);

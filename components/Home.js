@@ -5,9 +5,11 @@ import { WrapperStyle } from './styles/consistentStyles';
 import PostContainer from './PostContainer';
 
 import { authorData } from './authorData';
+import withTheme from '../lib/withTheme';
 
 function Home(props) {
-  const { color } = props;
+  const { theme, dark } = props;
+  const { textColorForDark, textColorForLight } = theme;
 
   return (
     <main className="wrapper home">
@@ -26,7 +28,7 @@ function Home(props) {
             padding-top: 120px;
             font-family: Roboto;
             width: 100%;
-            color: ${color};
+            color: ${dark ? textColorForDark : textColorForLight};
           }
         `}
       </style>
@@ -35,8 +37,8 @@ function Home(props) {
 }
 
 Home.propTypes = {
-  color: PT.string.isRequired,
+  theme: PT.shape(PT.string.isRequired).isRequired,
   dark: PT.bool.isRequired,
   postsData: PT.arrayOf(PT.object).isRequired,
 };
-export default Home;
+export default withTheme(Home);

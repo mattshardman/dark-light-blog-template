@@ -4,7 +4,9 @@ import { withRouter } from 'next/router';
 import Prismic from 'prismic-javascript';
 
 import { reformatIncomingPostData } from '../lib/utils/utilFunctions';
+import { config } from '../lib/config';
 import Header from '../components/header/Header';
+import { theme } from '../lib/theme';
 
 class MyApp extends App {
   constructor(props) {
@@ -16,7 +18,7 @@ class MyApp extends App {
   }
 
   static async getInitialProps() {
-    const apiEndpoint = 'https://boring-business.cdn.prismic.io/api/v2';
+    const apiEndpoint = config.apiURL;
 
     const results = await Prismic.api(apiEndpoint);
     const posts = await results.query(
@@ -32,6 +34,7 @@ class MyApp extends App {
   render() {
     const { dark } = this.state;
     const { Component, reformattedPosts } = this.props;
+    const { darkColor, lightColor } = theme;
 
     return (
       <Container>
@@ -39,11 +42,24 @@ class MyApp extends App {
           dark={dark}
           setDark={() => this.setState({ dark: !dark })}
         />
-        <Component
-          postsData={reformattedPosts}
-          {...this.props}
-          {...this.state}
-        />
+        <div className="main">
+          <Component
+            postsData={reformattedPosts}
+            {...this.props}
+            {...this.state}
+          />
+        </div>
+
+        <style jsx>{`
+          .main {
+            min-height: 100vh;
+            box-sizing: border-box;
+            width: 100%;
+            background: ${dark ? darkColor : lightColor};
+            transition: background 420ms;
+          }
+        `}
+        </style>
       </Container>
     );
   }

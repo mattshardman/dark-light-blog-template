@@ -7,8 +7,12 @@ import { reformatIncomingPostData } from '../lib/utils/utilFunctions';
 import Header from '../components/header/Header';
 
 class MyApp extends App {
-  state = {
-    dark: this.props.router.query === 'dark' || true,
+  constructor(props) {
+    super(props);
+    const { dark } = props.router.query;
+    this.state = {
+      dark: dark === 'dark' || true,
+    };
   }
 
   static async getInitialProps() {

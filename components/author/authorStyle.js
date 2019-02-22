@@ -72,8 +72,6 @@ const AuthorStyle = ({ dark }) => (
     .title p {
       font-size: 18px;
     }
-
-    
   }
   
   .intro-section {

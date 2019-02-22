@@ -5,6 +5,7 @@ import Author from './author/Author';
 
 import { bodyParser, getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
 import withTheme from '../lib/withTheme';
+import SignUp from './SignUp';
 
 function Post(props) {
   const { dark, specificPost, theme } = props;
@@ -24,6 +25,8 @@ function Post(props) {
       <div className="body">
         {jsxBody.map(each => bodyParser(each))}
       </div>
+
+      <SignUp />
 
       <Author
         minimize

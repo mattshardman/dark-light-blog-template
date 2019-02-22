@@ -13,7 +13,7 @@ const AuthorStyle = ({ dark, theme }) => (
       border-radius: 10px;
       border: ${dark ? 'none' : '1px solid #fff'};
       padding: 30px;
-      background: ${dark ? polished.darken(0.02, theme.darkColor) : polished.lighten(0.5, theme.lightColor)};
+      background: ${dark ? polished.darken(0.05, theme.darkColor) : polished.lighten(0.5, theme.lightColor)};
       box-shadow: ${dark ? '0 3px 35px rgba(0,0,0,0.25)' : '0 3px 35px rgba(0,0,0,0.1)'};
   }
 

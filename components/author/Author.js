@@ -3,6 +3,7 @@ import ProgressiveImage from 'react-progressive-image';
 import PT from 'prop-types';
 
 import AuthorStyle from './authorStyle';
+import withConfig from '../../lib/withConfig';
 
 const placeholder = (
   <div
@@ -14,21 +15,11 @@ const placeholder = (
   />
 );
 
-const socialIcons = [{
-  name: 'twitter',
-  link: 'https://twitter.com/nrhsmith',
-  class: 'twitter',
-},
-{
-  name: 'linkedin',
-  link: 'https://uk.linkedin.com/in/nick-smith01',
-  class: 'linkedin',
-}];
-
 function Author(props) {
+  const { author, minimize } = props;
   const {
-    title, subTitle, intro, avatarImage, minimize,
-  } = props;
+    title, subTitle, intro, avatarImage, socialIcons,
+  } = author;
 
   return (
     <section className="author-card">
@@ -75,10 +66,13 @@ function Author(props) {
 }
 
 Author.propTypes = {
-  title: PT.string.isRequired,
-  subTitle: PT.string.isRequired,
-  intro: PT.string.isRequired,
-  avatarImage: PT.string.isRequired,
+  author: PT.shape({
+    title: PT.string.isRequired,
+    subTitle: PT.string.isRequired,
+    intro: PT.string.isRequired,
+    avatarImage: PT.string.isRequired,
+  }).isRequired,
+
   dark: PT.bool.isRequired,
   minimize: PT.bool,
 };
@@ -87,4 +81,4 @@ Author.defaultProps = {
   minimize: false,
 };
 
-export default Author;
+export default withConfig(Author);

@@ -3,10 +3,12 @@ import Link from 'next/link';
 import PT from 'prop-types';
 
 import { getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
+import withTheme from '../lib/withTheme';
 
 function PostSnippet({
-  dark, id, title, date, snippet, body,
+  dark, id, title, date, snippet, body, theme,
 }) {
+  const { textColorForDark, textColorForLight, altColors } = theme;
   const timeToRead = getTimeToRead(body);
 
   return (
@@ -28,7 +30,7 @@ function PostSnippet({
         }
 
         h1 {
-          color: ${dark ? '#fff' : '#484848'};
+          color: ${dark ? textColorForDark : textColorForLight};
           font-weight: 700;
           font-size: 35px;
           margin: 10px 0;
@@ -36,7 +38,7 @@ function PostSnippet({
         }
 
         small {
-          color: #1ca8ff;
+          color: ${altColors[0]};
         }
 
         p {
@@ -56,6 +58,7 @@ PostSnippet.propTypes = {
   date: PT.string.isRequired,
   snippet: PT.string.isRequired,
   body: PT.arrayOf(PT.string).isRequired,
+  theme: PT.shape(PT.string.isRequired).isRequired,
 };
 
-export default PostSnippet;
+export default withTheme(PostSnippet);

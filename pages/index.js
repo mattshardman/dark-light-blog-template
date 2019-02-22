@@ -3,7 +3,6 @@ import Head from 'next/head';
 import PT from 'prop-types';
 
 import Home from '../components/Home';
-import withData from '../lib/withData';
 
 import { authorData } from '../components/authorData';
 import { colorScheme } from '../components/styles/colorScheme';
@@ -42,4 +41,4 @@ index.propTypes = {
   postsData: PT.arrayOf(PT.shape().isRequired).isRequired,
 };
 
-export default withData(index);
+export default index;

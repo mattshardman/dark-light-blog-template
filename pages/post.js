@@ -3,7 +3,6 @@ import Head from 'next/head';
 import PT from 'prop-types';
 
 import Post from '../components/Post';
-import withData from '../lib/withData';
 
 import { colorScheme } from '../components/styles/colorScheme';
 
@@ -23,10 +22,12 @@ const post = ({ dark, postsData, router }) => {
         <title key="title">{specificPost.title}</title>
         <meta key="description" name="description" content={specificPost.snippet} />
       </Head>
+
       <Post
         dark={dark}
         specificPost={specificPost || postsData[0]}
       />
+
       <style jsx>{`
         .post {
           min-height: 100vh;
@@ -47,4 +48,4 @@ post.propTypes = {
   postsData: PT.arrayOf(PT.object.isRequired).isRequired,
 };
 
-export default withData(post);
+export default post;

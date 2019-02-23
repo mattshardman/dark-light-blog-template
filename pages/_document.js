@@ -1,5 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 
+import { config } from '../lib/config';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -10,8 +12,6 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
           <link
@@ -21,10 +21,10 @@ export default class MyDocument extends Document {
 
           <link
             rel="shortcut icon"
-            href="https://res.cloudinary.com/dgdniqfi9/image/upload/v1550594730/nick-blog/moon-black.png"
+            href={config.general.favicon}
           />
 
-          <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+          <link href={`https://fonts.googleapis.com/css?family=${config.general.font}:400,700`} rel="stylesheet" />
 
           <link
             rel="stylesheet"
@@ -43,7 +43,7 @@ export default class MyDocument extends Document {
             margin: 0,
             padding: 0,
             overflowX: 'hidden',
-            fontFamily: 'Roboto',
+            fontFamily: config.general.font,
           }}
         >
           <Main />

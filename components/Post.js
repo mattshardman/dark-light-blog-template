@@ -1,29 +1,30 @@
 import React from 'react';
 import PT from 'prop-types';
+import { RichText } from 'prismic-reactjs';
+
 import { WrapperStyle } from './styles/consistentStyles';
 import Author from './author/Author';
-
-import { bodyParser, getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
-import withTheme from '../lib/withTheme';
 import SignUp from './SignUp';
+
+import { getTimeToRead, getTimeSincePost, htmlSerializer } from '../lib/utils/utilFunctions';
+import withTheme from '../lib/withTheme';
 
 function Post(props) {
   const { dark, specificPost, theme } = props;
   const { textColorForDark, textColorForLight, altColors } = theme;
   const {
-    title, date, body, jsxBody,
+    title, date, body, orgTitle, orgBody,
   } = specificPost;
 
+  console.log(orgTitle, orgBody);
   const timeToRead = getTimeToRead(body);
 
   return (
     <article className="wrapper article">
       <h1>{title}</h1>
-
       <small>{getTimeSincePost(date)} - {timeToRead} minute read</small>
-
       <div className="body">
-        {jsxBody.map(each => bodyParser(each))}
+        {RichText.render(orgBody, doc => doc.id, htmlSerializer)}
       </div>
 
       <SignUp />
@@ -45,12 +46,19 @@ function Post(props) {
         .body {
           box-sizing: border-box;
           width: 100%;
-          padding: 40px 0;
+          padding: 20px 0;
+        }
+
+        .block-img {
+          background: red;
+          box-sizing: border-box;
+          max-height: 100%;
+          max-width: 100%;
         }
 
         a {
           text-decoration: none;
-          color: ${dark ? textColorForDark : textColorForLight};
+          color: ${dark ? altColors[1] : textColorForLight};
         }
 
         h1 {

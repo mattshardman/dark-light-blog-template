@@ -6,8 +6,13 @@ import Switch from './Switch';
 import withConfig from '../../lib/withConfig';
 
 function Header({ header, dark, setDark }) {
-  const { title, titleImgForDark, titleImgForLight } = header;
+  const {
+    title, titleImgForDark, titleImgForLight, capitalize,
+  } = header;
+
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const titleText = capitalize ? title.toUpperCase() : title;
 
   const handleScroll = () => {
     if (window.scrollY > 100) return setIsScrolled(true);
@@ -39,7 +44,7 @@ function Header({ header, dark, setDark }) {
             alt=""
             height={40}
           />
-          <h1>{title}</h1>
+          <h1>{titleText}</h1>
         </div>
       </Link>
 
@@ -68,21 +73,18 @@ function Header({ header, dark, setDark }) {
             .logo-section {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                width: 350px;
+                justify-content: flex-start;
                 cursor: pointer;
             }
 
             h1 {
+                margin-left: 20px;
                 font-size: 40px;
                 opacity: ${isScrolled ? 0 : 1};
                 transition: font-size 420ms, opacity 420ms;
             }
 
             @media (max-width: 900px) {
-              .logo-section {
-                width: 220px;
-              }
               h1 {
                 font-size: 22px;
               }

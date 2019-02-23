@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PT from 'prop-types';
+import axios from 'axios';
 import withTheme from '../lib/withTheme';
 
 function SignUp({ theme }) {
   const {
     textColorForLight, textColorForDark, altColors,
   } = theme;
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [signedUp, setSignedUp] = useState(false);
+
+  const sendResult = (e) => {
+    e.preventDefault();
+    axios.post('/api/send', {
+      name,
+      email,
+    }).then(() => {
+      localStorage.setItem('signed-up', true);
+      setSignedUp(true);
+    });
+  };
+
+  useEffect(() => {
+    const hasAlreadySignedUp = localStorage.getItem('signed-up');
+    if (hasAlreadySignedUp) {
+      setSignedUp(true);
+    }
+  }, []);
 
   return (
     <section className="sign-up">
@@ -23,11 +46,35 @@ function SignUp({ theme }) {
         </div>
       </div>
       <div className="form-section">
-        <form action="" className="form">
-          <input type="text" placeholder="Your first name" />
-          <input type="text" placeholder="Your email address" />
-          <button type="submit">Sign Up</button>
-        </form>
+        {signedUp
+          ? (
+            <div className="like">
+              <img
+                src="https://res.cloudinary.com/dgdniqfi9/image/upload/v1550855599/nick-blog/like.svg"
+                alt=""
+                height={50}
+              />
+              <p>Thanks you&apos;ve signed up</p>
+            </div>
+          )
+          : (
+            <form action="" className="form" onSubmit={e => sendResult(e)}>
+              <input
+                type="text"
+                placeholder="Your first name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Your email address"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+              <button type="submit">Sign Up</button>
+            </form>
+          )
+      }
       </div>
       <style jsx>{`
         .sign-up {
@@ -77,7 +124,7 @@ function SignUp({ theme }) {
 
         .title-section p {
             line-height: 1.4;
-        }
+        }   
 
         .form-section {
             height: 100%;
@@ -87,6 +134,20 @@ function SignUp({ theme }) {
             justify-content: center;
             align-items: center;
             width: 100%;
+        }
+
+        .like {
+            display: flex;
+            width: 75%;
+            height: 65%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: ${textColorForLight};
+        }
+
+        .like p {
+            margin-top: 20px;
         }
 
         .form {

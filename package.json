@@ -13,6 +13,10 @@
   "author": "Matt Hardman",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "mailchimp-api-v3": "^1.12.1",
+    "micro": "^9.3.3",
     "moment": "^2.24.0",
     "next": "^8.0.1",
     "polished": "^3.0.0",
@@ -25,10 +29,12 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.5",
+    "cors": "^2.8.5",
     "eslint": "^5.0.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.10.0"
+    "eslint-plugin-react": "^7.10.0",
+    "express": "^4.16.4"
   }
 }

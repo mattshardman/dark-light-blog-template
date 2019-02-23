@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import PT from 'prop-types';
 import axios from 'axios';
-import withTheme from '../lib/withTheme';
+import withTheme from '../../lib/withTheme';
+import withConfig from '../../lib/withConfig';
+import SignUpForm from './SignUpForm';
 
-function SignUp({ theme }) {
+function SignUp({ theme, signUp }) {
   const {
-    textColorForLight, textColorForDark, altColors,
+    textColorForLight,
   } = theme;
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const {
+    title, text, leftImage, signedUpImage, signedUpMessage,
+  } = signUp;
+
+
   const [signedUp, setSignedUp] = useState(false);
 
-  const sendResult = (e) => {
+  const sendResult = (e, name, email) => {
     e.preventDefault();
     axios.post('/api/send', {
       name,
@@ -35,13 +40,13 @@ function SignUp({ theme }) {
       <div className="text-section">
         <div className="text">
           <img
-            src="https://res.cloudinary.com/dgdniqfi9/image/upload/v1550851835/nick-blog/email.svg"
+            src={leftImage}
             alt=""
             height={50}
           />
           <div className="title-section">
-            <h1>Sign Up</h1>
-            <p>Sign up to my newsletter, you&apos;ll be notified every time I blog and get some juicy content.</p>
+            <h1>{title}</h1>
+            <p>{text}</p>
           </div>
         </div>
       </div>
@@ -50,29 +55,19 @@ function SignUp({ theme }) {
           ? (
             <div className="like">
               <img
-                src="https://res.cloudinary.com/dgdniqfi9/image/upload/v1550855599/nick-blog/like.svg"
+                src={signedUpImage}
                 alt=""
                 height={50}
               />
-              <p>Thanks you&apos;ve signed up</p>
+              <p>{signedUpMessage}</p>
             </div>
           )
           : (
-            <form action="" className="form" onSubmit={e => sendResult(e)}>
-              <input
-                type="text"
-                placeholder="Your first name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Your email address"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-              <button type="submit">Sign Up</button>
-            </form>
+            <SignUpForm
+              {...signUp}
+              {...theme}
+              sendResult={sendResult}
+            />
           )
       }
       </div>
@@ -150,47 +145,6 @@ function SignUp({ theme }) {
             margin-top: 20px;
         }
 
-        .form {
-            width: 75%;
-            height: 65%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        input {
-            box-sizing: border-box;
-            height: 40px;
-            width: 100%;
-            border: 1px solid #ddd;
-            padding: 0 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            outline: none;
-            transition: border 420ms;
-        }
-
-        input:focus {
-            border: 1px solid #484848;
-        }
-
-        button {
-            box-sizing: border-box;
-            height: 40px;
-            width: 100%;
-            background: ${altColors[0]};
-            color: ${textColorForDark};
-            border: 1px solid${altColors[0]};
-            font-size: 16px;
-            border-radius: 20px;
-            outline: none;
-        }
-
-        button:hover {
-            cursor: pointer;
-            box-shadow: inset 0 -4px 40px rgba(0,0,0,0.1);
-        }
-
         @media (max-width: 500px) {
             .sign-up {
                 height: 450px;
@@ -213,6 +167,7 @@ function SignUp({ theme }) {
 
 SignUp.propTypes = {
   theme: PT.shape(PT.string.isRequired).isRequired,
+  signUp: PT.shape(PT.string.isRequired).isRequired,
 };
 
-export default withTheme(SignUp);
+export default withConfig(withTheme(SignUp));

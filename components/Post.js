@@ -4,19 +4,20 @@ import { RichText } from 'prismic-reactjs';
 
 import { WrapperStyle } from './styles/consistentStyles';
 import Author from './author/Author';
-import SignUp from './SignUp';
+import SignUp from './signUp/SignUp';
 
 import { getTimeToRead, getTimeSincePost, htmlSerializer } from '../lib/utils/utilFunctions';
 import withTheme from '../lib/withTheme';
 
 function Post(props) {
   const { dark, specificPost, theme } = props;
-  const { textColorForDark, textColorForLight, altColors } = theme;
   const {
-    title, date, body, orgTitle, orgBody,
+    fontFamily, textColorForDark, textColorForLight, altColors,
+  } = theme;
+  const {
+    title, date, body, orgBody,
   } = specificPost;
 
-  console.log(orgTitle, orgBody);
   const timeToRead = getTimeToRead(body);
 
   return (
@@ -37,6 +38,7 @@ function Post(props) {
       <WrapperStyle />
       <style jsx>{`
         .article {
+          font-family: ${fontFamily};
           box-sizing: border-box;
           padding-top: 120px;
           padding-bottom: 60px;
@@ -47,18 +49,6 @@ function Post(props) {
           box-sizing: border-box;
           width: 100%;
           padding: 20px 0;
-        }
-
-        .block-img {
-          background: red;
-          box-sizing: border-box;
-          max-height: 100%;
-          max-width: 100%;
-        }
-
-        a {
-          text-decoration: none;
-          color: ${dark ? altColors[1] : textColorForLight};
         }
 
         h1 {

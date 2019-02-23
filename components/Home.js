@@ -8,7 +8,7 @@ import withTheme from '../lib/withTheme';
 
 function Home(props) {
   const { theme, dark } = props;
-  const { textColorForDark, textColorForLight } = theme;
+  const { fontFamily, textColorForDark, textColorForLight } = theme;
 
   return (
     <main className="wrapper home">
@@ -22,9 +22,9 @@ function Home(props) {
 
       <style jsx>{`
           .home {
+            font-family: ${fontFamily};
             box-sizing: border-box;
             padding-top: 120px;
-            font-family: Roboto;
             width: 100%;
             color: ${dark ? textColorForDark : textColorForLight};
           }

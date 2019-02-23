@@ -1,6 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 
 import { config } from '../lib/config';
+import { theme } from '../lib/theme';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -24,7 +25,8 @@ export default class MyDocument extends Document {
             href={config.general.favicon}
           />
 
-          <link href={`https://fonts.googleapis.com/css?family=${config.general.font}:400,700`} rel="stylesheet" />
+          <link href={`https://fonts.googleapis.com/css?family=${theme.font}:400,700`} rel="stylesheet" />
+          <link href={`https://fonts.googleapis.com/css?family=${theme.headerFont}:400,700`} rel="stylesheet" />
 
           <link
             rel="stylesheet"
@@ -43,7 +45,7 @@ export default class MyDocument extends Document {
             margin: 0,
             padding: 0,
             overflowX: 'hidden',
-            fontFamily: config.general.font,
+            fontFamily: theme.fontFamily,
           }}
         >
           <Main />

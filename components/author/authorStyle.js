@@ -11,9 +11,9 @@ const AuthorStyle = ({ dark, theme }) => (
       flex-direction: column;
       align-items: center;
       border-radius: 10px;
-      border: ${dark ? 'none' : '1px solid #fff'};
+      border: none;
       padding: 30px;
-      background: ${dark ? polished.darken(0.05, theme.darkColor) : polished.lighten(0.5, theme.lightColor)};
+      background: ${dark ? polished.darken(0.05, theme.darkColor) : polished.lighten(0.05, theme.lightColor)};
       box-shadow: 0 3px 35px rgba(0,0,0,0.2);
   }
 
@@ -48,7 +48,7 @@ const AuthorStyle = ({ dark, theme }) => (
   }
 
   .title p {
-    color: #1ca8ff;
+    color: ${theme.altColors[0]};
     font-size: 20px;
     margin: 0;
   }
@@ -107,7 +107,7 @@ const AuthorStyle = ({ dark, theme }) => (
   }
 
   a:hover {
-    color: #1ca8ff;
+    color: ${theme.altColors[0]};
   }
   `}
   </style>

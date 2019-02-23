@@ -8,7 +8,7 @@ import withConfig from '../lib/withConfig';
 const index = ({ postsData, dark, author }) => (
   <>
     <Head>
-      <title key="title">Boring.business - blog about businesses</title>
+      <title key="title">{author.title}</title>
       <meta key="description" name="description" content={author.into} />
     </Head>
     <Home

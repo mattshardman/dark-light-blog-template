@@ -70,7 +70,7 @@ function Header({
                 align-items: center;
                 justify-content: space-between;
                 color: ${dark ? '#fff' : '#484848'};
-                background: ${dark ? '#30353d' : '#f9fbff'};
+                background: ${dark ? theme.darkColor : theme.lightColor };
                 height: ${isScrolled ? '60px' : '100px'};
                 border-bottom:  ${isScrolled ? '1px #ddd solid' : 'none'};
                 transition: height 420ms, background 420ms, border-bottom 420ms;

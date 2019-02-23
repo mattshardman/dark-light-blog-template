@@ -10,7 +10,6 @@ export const WrapperStyle = () => (
         .wrapper {
             padding: 0 3%;
         }
-        
     }
 `}
   </style>

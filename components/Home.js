@@ -4,7 +4,6 @@ import Author from './author/Author';
 import { WrapperStyle } from './styles/consistentStyles';
 import PostContainer from './PostContainer';
 
-import { authorData } from './authorData';
 import withTheme from '../lib/withTheme';
 
 function Home(props) {
@@ -15,7 +14,6 @@ function Home(props) {
     <main className="wrapper home">
       <Author
         {...props}
-        {...authorData}
       />
 
       <PostContainer {...props} />
@@ -41,4 +39,5 @@ Home.propTypes = {
   dark: PT.bool.isRequired,
   postsData: PT.arrayOf(PT.object).isRequired,
 };
+
 export default withTheme(Home);

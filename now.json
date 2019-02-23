@@ -1,10 +1,17 @@
 {
   "version": 2,
-  "alias": ["boringbusiness", "www.boring.business", "boring.business"],
+  "alias": ["boring-business", "www.boring.business", "boring.business"],
   "builds": [
     {
       "src": "next.config.js",
       "use": "@now/next"
+    },
+    {
+      "src": "/api/send/index.js",
+      "use": "@now/node"
     }
-  ]
+  ],
+  "env": {
+    "API_KEY": "5f83e369553689e5bb5381f031c0d2f1-us19"
+  }
 }

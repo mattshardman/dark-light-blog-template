@@ -3,10 +3,9 @@ import PT from 'prop-types';
 import { WrapperStyle } from './styles/consistentStyles';
 import Author from './author/Author';
 
-import { authorData } from './authorData';
 import { bodyParser, getTimeToRead, getTimeSincePost } from '../lib/utils/utilFunctions';
 import withTheme from '../lib/withTheme';
-
+import SignUp from './SignUp';
 
 function Post(props) {
   const { dark, specificPost, theme } = props;
@@ -27,10 +26,11 @@ function Post(props) {
         {jsxBody.map(each => bodyParser(each))}
       </div>
 
+      <SignUp />
+
       <Author
         minimize
         {...props}
-        {...authorData}
       />
 
       <WrapperStyle />

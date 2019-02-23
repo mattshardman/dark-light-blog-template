@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": ["boring-business", "www.boring.business", "boring.business"],
+  "alias": [""],
   "builds": [
     {
       "src": "next.config.js",
@@ -12,6 +12,6 @@
     }
   ],
   "env": {
-    "API_KEY": "5f83e369553689e5bb5381f031c0d2f1-us19"
+    "API_KEY": ""
   }
 }

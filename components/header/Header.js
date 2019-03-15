@@ -29,7 +29,7 @@ function Header({
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
     return () => document.removeEventListener('scroll', handleScroll);
-  });
+  }, []);
 
   return (
     <header className="wrapper header">

@@ -13,7 +13,7 @@ class MyApp extends App {
     super(props);
     const { dark } = props.router.query;
     this.state = {
-      dark: dark === 'dark' || true,
+      dark: dark === 'dark' || false,
     };
   }
 

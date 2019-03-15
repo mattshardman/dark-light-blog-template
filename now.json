@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": ["boring-business", "www.boring.business", "boring.business"],
+  "alias": [""],
   "builds": [
     {
       "src": "next.config.js",
